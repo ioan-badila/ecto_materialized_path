@@ -80,10 +80,10 @@ defmodule EctoMaterializedPath do
     Ecto.Query.from(q in struct, where: q.id in ^root_id, limit: 1)
   end
 
-  def root_id(%{ id: id }, []) when is_integer(id), do: id
+  def root_id(%{ id: id }, []) when not is_nil(id), do: id
   def root_id(_, path) when is_list(path), do: path |> List.first()
 
-  def root?(%{ id: id }, []) when is_integer(id), do: true
+  def root?(%{ id: id }, []) when not is_nil(id), do: true
   def root?(_, path) when is_list(path), do: false
 
   def ancestors(schema = %{ __struct__: struct }, path) when is_list(path) do

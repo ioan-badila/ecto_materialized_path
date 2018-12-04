@@ -49,6 +49,12 @@ defmodule MyApp.AddMaterializedPathToComments do
 end
 ```
 
+If you are using binary_id you can change the path to 
+``` elixir
+      add :path, {:array, :binary_id}, null: false
+end
+```
+
 ## How does it work?
 
 `ecto_materialized_path` stores node position as the tree of its ancestors, i.e.
